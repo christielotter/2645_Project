@@ -10,6 +10,15 @@ float input_resistor;
 float ground_resistor;
 float gain;
 
+
+void go_back_to_main() {
+  std::string input;
+  do {
+    std::cout << "\nEnter 'b' or 'B' to go back to main menu: ";
+    std::cin >> input;
+  } while (input != "b" && input != "B");
+}
+
 void menu_item_1() {
   std::cout << "\n>> Menu 1\n";
   std::cout << "\nSome code here does something useful\n";
@@ -61,8 +70,8 @@ void menu_item_2() {
     std::cout << "The output voltage is: " << output_voltage << " V\n";
 
   } else {
-    // Invalid choice handling
-    std::cout << "\nInvalid choice! Returning to the main menu.\n";
+    // Prompt user to go back to the main menu
+    go_back_to_main();
   }
 }
 
