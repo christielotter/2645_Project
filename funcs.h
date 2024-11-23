@@ -5,5 +5,6 @@ void menu_item_1();
 void menu_item_2();
 void menu_item_3();
 void menu_item_4();
+void go_back_to_main();
 
 #endif
