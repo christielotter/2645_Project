@@ -91,9 +91,6 @@ void print_main_menu() {
   std::cout << "---------------------------------\n";
 }
 
-// Prompt user to go back to the main menu
-void go_back_to_main();
-
 // https://codereview.stackexchange.com/questions/162569/checking-if-each-char-in-a-string-is-a-decimal-digit
 bool is_integer(std::string num) {
   return std::regex_match(num, std::regex("[+-]?[0-9]+"));
