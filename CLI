@@ -1,8 +1,12 @@
 
 #include <iostream>
 #include <regex> // needed to parse inputs
-
 #include "funcs.h" // sub functions go in here
+#include <string>
+#include <map>
+#include <vector>
+#include <cmath>
+
 
 void main_menu();       // runs in the main loop
 void print_main_menu(); // output the main menu description
@@ -82,7 +86,7 @@ void select_menu_item(int input) {
 void print_main_menu() {
   std::cout << "\n----------- Main menu -----------\n";
   std::cout << "|\t\t\t\t\t\t|\n";
-  std::cout << "|\t1. Menu item 1\t\t|\n";
+  std::cout << "|\t1. The Resistor Calculator\t\t|\n";
   std::cout << "|\t2. The Op Amp \t\t|\n";
   std::cout << "|\t3. Menu item 3\t\t|\n";
   std::cout << "|\t4. Menu item 4\t\t|\n";
