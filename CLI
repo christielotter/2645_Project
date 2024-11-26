@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <regex> // needed to parse inputs
+#include <regex> // needed to parse input
 #include "funcs.h" // sub functions go in here
 #include <string>
 #include <map>
