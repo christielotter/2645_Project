@@ -5,7 +5,7 @@
 #include <vector>
 #include <cmath>
 #include "funcs.h"
-
+#include <algorithm> // For std::transform
 #include "funcs.h"
 
 float inverting_input_voltage;
@@ -73,6 +73,7 @@ void menu_item_1() {
     } while (choice != 5);
 }
 void calculate_resistor_from_color_code() {
+    // Define color-to-value and multiplier maps
     std::map<std::string, int> color_code = {
         {"black", 0}, {"brown", 1}, {"red", 2}, {"orange", 3}, {"yellow", 4},
         {"green", 5}, {"blue", 6}, {"violet", 7}, {"gray", 8}, {"white", 9}
@@ -82,20 +83,31 @@ void calculate_resistor_from_color_code() {
         {"green", 100000}, {"blue", 1000000}, {"gold", 0.1}, {"silver", 0.01}
     };
 
+    // Helper lambda to convert a string to lowercase
+    auto to_lower = [](std::string &str) {
+        std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    };
+
     std::string band1, band2, multiplier;
     std::cout << "Enter first color band: ";
     std::cin >> band1;
+    to_lower(band1); // Convert to lowercase
     std::cout << "Enter second color band: ";
     std::cin >> band2;
+    to_lower(band2); // Convert to lowercase
     std::cout << "Enter multiplier band: ";
     std::cin >> multiplier;
+    to_lower(multiplier); // Convert to lowercase
 
-    if (color_code.find(band1) == color_code.end() || color_code.find(band2) == color_code.end() ||
+    // Validate the color bands
+    if (color_code.find(band1) == color_code.end() || 
+        color_code.find(band2) == color_code.end() || 
         multipliers.find(multiplier) == multipliers.end()) {
-        std::cout << "Invalid color code entered. Try again.\n";
+        std::cout << "Invalid color code entered. Please try again.\n";
         return;
     }
 
+    // Calculate the resistance
     int significant_digits = color_code[band1] * 10 + color_code[band2];
     double resistance = significant_digits * multipliers[multiplier];
     std::cout << "Resistance: " << resistance << " ohms\n";
