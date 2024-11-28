@@ -83,18 +83,19 @@ void select_menu_item(int input) {
 }
 
 void print_main_menu() {
-  std::cout << "\n----------- Main menu -----------\n";
-  std::cout << "|\t\t\t\t\t\t|\n";
-  std::cout << "|\t1. The Resistor Calculator\t\t|\n";
-  std::cout << "|\t2. The Op Amp \t\t|\n";
-  std::cout << "|\t3. Menu item 3\t\t|\n";
-  std::cout << "|\t4. Menu item 4\t\t|\n";
+  std::cout << "\n--------------- Main menu ---------------\n";
+  std::cout << "|\t\t\t\t\t|\n";
+  std::cout << "|\t1. Resistor Calculator\t\t|\n";
+  std::cout << "|\t2. Op Amp Configurator\t\t|\n";
+  std::cout << "|\t3. Menu item 3\t\t\t|\n";
+  std::cout << "|\t4. Sallen Key Filter  \t\t|\n";
   std::cout << "|\t5. Exit\t\t\t\t|\n";
-  std::cout << "|\t\t\t\t\t\t|\n";
-  std::cout << "---------------------------------\n";
+  std::cout << "|\t\t\t\t\t|\n";
+  std::cout << "-----------------------------------------\n";
 }
 
 // https://codereview.stackexchange.com/questions/162569/checking-if-each-char-in-a-string-is-a-decimal-digit
 bool is_integer(std::string num) {
   return std::regex_match(num, std::regex("[+-]?[0-9]+"));
 }
+
