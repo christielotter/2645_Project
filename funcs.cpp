@@ -15,6 +15,12 @@ float input_resistor;
 float ground_resistor;
 float gain;
 
+void clearscreen() {
+#ifdef _WIN32
+    system("cls");
+#endif // !Win32
+
+}
 bool validate_positive_input(float &value, const std::string &prompt) {
     std::cout << prompt;
     std::cin >> value;
@@ -32,10 +38,13 @@ void go_back_to_main() {
   do {
     std::cout << "\nEnter 'b' or 'B' to go back to main menu: ";
     std::cin >> input;
+    clearscreen();
+
   } while (input != "b" && input != "B");
 }
 
 void menu_item_1() {
+    clearscreen();
     int choice;
     do {
         std::cout << "\n--- Resistor Calculator ---\n";
@@ -269,6 +278,7 @@ void get_npv_and_color_code_for_resistor(double resistance) {
 }
 
 void menu_item_2() {
+    clearscreen();
   std::cout << "\n>> The Op-Amp \n";
   int choice;
 
@@ -323,12 +333,13 @@ void menu_item_2() {
 }
 
 void menu_item_3() {
+    clearscreen();
   std::cout << "\n>> Menu 3\n";
   std::cout << "\nSome code here does something useful\n";
   // you can call a function from here that handles menu 3
 }
 void menu_item_4() {
-  std::cout << "\n>> Menu 4\n";
-  std::cout << "\nSome code here does something useful\n";
+    clearscreen();
+
   // you can call a function from here that handles menu 4
 }
