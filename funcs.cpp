@@ -339,7 +339,31 @@ void menu_item_3() {
   // you can call a function from here that handles menu 3
 }
 void menu_item_4() {
-    clearscreen();
+    std::cout << "\n>> Menu 4: Sallen-Key Filter Diagram\n";
 
-  // you can call a function from here that handles menu 4
+    // Displaying the basic Sallen-Key filter circuit diagram
+    std::cout << "\nBasic Sallen-Key Filter Diagram:\n";
+    std::cout << "        +-------------------------+\n";
+    std::cout << "  Vin --| R1 |--+                |\n";
+    std::cout << "         (R1)   |               ---\n";
+    std::cout << "                --- C1          |   |\n";
+    std::cout << "                |   |           | Op|\n";
+    std::cout << "               (R2) +--+        |Amp|\n";
+    std::cout << "                |      |        |   |\n";
+    std::cout << "               ---    --- C2    ---\n";
+    std::cout << "               |       |         |\n";
+    std::cout << "              GND     GND       Vout\n";
+
+    // Taking user input for the number of poles
+    int num_poles;
+    std::cout << "\nEnter the number of poles for the Sallen-Key filter: ";
+    std::cin >> num_poles;
+
+    // Displaying the filter structure for multiple poles
+    std::cout << "\nSallen-Key Filter Structure (Pole Count: " << num_poles << "):\n";
+    for (int i = 1; i <= num_poles; ++i) {
+        std::cout << " Pole " << i << ":\n";
+        std::cout << "   Vin -> [R1 + C1] -> Node -> [R2 + C2] -> Op-Amp -> Vout\n";
+    }
 }
+
