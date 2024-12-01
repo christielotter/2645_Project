@@ -439,40 +439,90 @@ void menu_item_3() {
   std::cout << "\nSome code here does something useful\n";
   // you can call a function from here that handles menu 3
 }
+
+
+void print_sallen_key_diagram(const std::vector<double>& resistors, const std::vector<double>& capacitors, double ra, double rb) {
+    std::cout << "\nGeneral Sallen-Key Filter Circuit Diagram:\n";
+    std::cout << "          Vin                                 Vout\n";
+    std::cout << "           |                                   |\n";
+    std::cout << "          R1 (" << resistors[0] << " Ω)                     |\n";
+    std::cout << "           |                                   |\n";
+    std::cout << "           +-------+                 +---------+\n";
+    std::cout << "           |       |                 |         |\n";
+    std::cout << "          C1 (" << capacitors[0] << " µF)     R2 (" << resistors[1] << " Ω)        |\n";
+    std::cout << "           |       |                 |         |\n";
+    std::cout << "          GND      |                GND        |\n";
+    std::cout << "                   +                 |          |\n";
+    std::cout << "                   |                RB (" << rb << " Ω)\n";
+    std::cout << "                   |                 |          |\n";
+    std::cout << "                   +------+----------+          |\n";
+    std::cout << "                          |                     |\n";
+    std::cout << "                         ---                    |\n";
+    std::cout << "                         RA (" << ra << " Ω)                 |\n";
+    std::cout << "                         ---                    |\n";
+    std::cout << "                          |                     |\n";
+    std::cout << "                         GND                   GND\n";
+    std::cout << "\n";
+}
+
+void get_component_values(std::vector<double>& resistors, std::vector<double>& capacitors, double& ra, double& rb) {
+    std::cout << "\nEnter values for Resistors and Capacitors:\n";
+
+    std::cout << "  R1 (Ω): ";
+    std::cin >> resistors[0];
+
+    std::cout << "  C1 (µF): ";
+    std::cin >> capacitors[0];
+
+    std::cout << "  R2 (Ω): ";
+    std::cin >> resistors[1];
+
+    std::cout << "  C2 (µF): ";
+    std::cin >> capacitors[1];
+
+    std::cout << "  RA (Ω): ";
+    std::cin >> ra;
+
+    std::cout << "  RB (Ω): ";
+    std::cin >> rb;
+}
+
+
+void print_diagram_by_pole_count(int num_poles) {
+    int diagram_count = num_poles / 2; // Each diagram represents 2 poles
+
+    // Initialize component values
+    std::vector<double> resistors(2);  // R1, R2
+    std::vector<double> capacitors(2); // C1, C2
+    double ra, rb;
+
+    // Get user inputs for the components
+    get_component_values(resistors, capacitors, ra, rb);
+
+    // Print the diagrams
+    for (int i = 0; i < diagram_count; ++i) {
+        std::cout << "\nPole Pair " << (i + 1) << ":\n";
+        print_sallen_key_diagram(resistors, capacitors, ra, rb);
+    }
+}
+
 void menu_item_4() {
     clearscreen();
-    // you can call a function from here that handles menu 4
     std::cout << "\n>> Menu 4: Sallen-Key Filter Diagram\n";
-    // Displaying the basic Sallen-Key filter circuit diagram
 
-     int num_poles;
-     std::cout << "\nenter the number of poles of the circuit(2, 4, or 6): ";
-     std::cin >> num_poles;
+    // Taking user input for the number of poles
+    int num_poles;
+    std::cout << "Enter the number of poles (2, 4, or 6): ";
+    std::cin >> num_poles;
 
-    // Validate poles input
     if (num_poles != 2 && num_poles != 4 && num_poles != 6) {
-        std::cout << "\nInvalid poles value. Only 2, 4, and 6 poles are supported.\n";
+        std::cout << "Invalid input. Only 2, 4, or 6 poles are allowed.\n";
         return;
     }
 
-    std::cout << "\nBasic Sallen-Key Filter Diagram:\n";
-    std::cout << "        +-------------------------+\n";
-    std::cout << "  Vin --| R1 |--+                |\n";
-    std::cout << "         (R1)   |               ---\n";
-    std::cout << "                --- C1          |   |\n";
-    std::cout << "                |   |           | Op|\n";
-    std::cout << "               (R2) +--+        |Amp|\n";
-    std::cout << "                |      |        |   |\n";
-    std::cout << "               ---    --- C2    ---\n";
-    std::cout << "               |       |         |\n";
-    std::cout << "              GND     GND       Vout\n";
+    std::cout << "\nGenerating Sallen-Key Filter for " << num_poles << " poles:\n";
+    print_diagram_by_pole_count(num_poles);
 
-    // Displaying the filter structure for multiple poles
-    std::cout << "\nSallen-Key Filter Structure (Pole Count: " << num_poles << "):\n";
-    for (int i = 1; i <= num_poles; ++i) {
-        std::cout << " Pole " << i << ":\n";
-        std::cout << "   Vin -> [R1 + C1] -> Node -> [R2 + C2] -> Op-Amp -> Vout\n";
-    }
     int choice;
     int resistor = 1000; 
     float capacitor = 1e-9;
