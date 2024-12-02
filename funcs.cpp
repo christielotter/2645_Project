@@ -529,7 +529,7 @@ void print_diagram_by_pole_count(int num_poles) {
     }
 }
 void menu_item_4() {
-     cclearscreen();
+     clearscreen();
     std::cout << "\n>> Menu 4: Sallen-Key Filter Diagram\n";
 
     // Taking user input for the number of poles
