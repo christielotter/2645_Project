@@ -443,41 +443,54 @@ void menu_item_3() {
 
 void print_sallen_key_diagram(double r, double c, double ra, double rb) {
     std::cout << "\nGeneral Sallen-Key Filter Circuit Diagram:\n";
-    std::cout << R"(
-          Vin
-           |
-           Z1 (R1 = )" << r << R"()
-           |
-           +-------------+
-           |             |
-           |            Z2 (C1 = )" << c << R"()
-           |             |
-           |            GND
-           |
-           Z3 (R2 = )" << r << R"()
-           |
-           +-------------+
-           |             |
-           |             |
-           |             |
-          Z4 (C2 = )" << c << R"()        |
-           |             |
-          GND            |
-                          |
-                         +----+
-                         |    |
-                         |    | Op-Amp
-                         |    |
-                         +----+
-                          |  |
-                          |  +--------+
-                          |           |
-                          RA = )" << ra << R"(       |
-                          |           RB = )" << rb << R"(
-                         GND         GND
-    )" << std::endl;
-}
+   std::cout<< R"(
 
+
+
+
+
+
+                                               |-----| 
+                                 --------------| Z3  |-------------------------------------
+                                 |             |-----|                                    |                   
+                                 |                                                        |          
+                                 |                                                        |          
+                                 |                                                        |          
+                                 |                                                        |          
+                                 |                                      |\                |         
+                                 |                                      | \               |          
+                                 |                                      |  \              |          
+                                 |                                      |   \             |          
+                                 |                                      |+   \            |          
+                                 |                                      |     \           |          
+                     |----|      |            |----|                    |     /----------------------Vout
+     Vin-------------| Z1 | -----|------------| Z2 |---------|----------|    /            |
+                     |----|                   |----|         |          |   /             |
+                                                             |       ---|_ /            |----|
+                                                             |       |  | /             | RA |
+                                                             |       |  |/              |----|
+                                                           |-----|   |                    |
+                                                           | Z4  |   |____________________|
+                                                           |_____|                        |
+                                                             |                          |----|
+                                                             |                          | RB |
+                                                             |                          |____|
+                                                             |                            |
+                                                             |                            | 
+                                                             |                            |
+                                                            ----                         ----
+                                                             --                           --
+
+
+
+
+
+
+
+
+
+)" << std::endl;
+}
 void get_component_values(double& r, double& c, double& ra, double& rb) {
     std::cout << "\nEnter values for Resistors and Capacitors:\n";
 
@@ -507,11 +520,16 @@ void print_diagram_by_pole_count(int num_poles) {
     for (int i = 0; i < diagram_count; ++i) {
         std::cout << "\nPole Pair " << (i + 1) << ":\n";
         print_sallen_key_diagram(r, c, ra, rb);
+        
+        std::cout << "\nComponent Values:\n";
+    std::cout << "  R (shared value for Z1 and Z3): " << r << " ohms\n";
+    std::cout << "  C (shared value for Z2 and Z4): " << c << " farads\n";
+    std::cout << "  RA: " << ra << " ohms\n";
+    std::cout << "  RB: " << rb << " ohms\n";
     }
 }
-
 void menu_item_4() {
-     clearscreen();
+     cclearscreen();
     std::cout << "\n>> Menu 4: Sallen-Key Filter Diagram\n";
 
     // Taking user input for the number of poles
